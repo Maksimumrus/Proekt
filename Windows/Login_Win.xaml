@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="Login_Win" Height="450" Width="800">
     <Grid>
-        
+        <TextBox 
+            x:Name="logBox"
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="201" Height="46"
+            Margin="81,102,0,0" 
+            TextWrapping="Wrap" />
+
+
+        <TextBox 
+            x:Name="passBox"
+            HorizontalAlignment="Left" VerticalAlignment="Top" 
+            Width="201" Height="46"
+            Margin="81,209,0,0" 
+            TextWrapping="Wrap" />
+        <Button 
+            x:Name="logButt"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Height="40" Width="119"
+            Margin="122,0,0,60" 
+            Content="Войти" Click="logButt_Click" />
     </Grid>
 </Window>

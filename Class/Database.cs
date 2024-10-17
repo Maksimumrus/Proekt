@@ -22,7 +22,7 @@ namespace Proekt.Class
                 connection.Close();
         }
 
-        public MySqlConnection returnConn()
+        public MySqlConnection statusConn()
         {
             return connection;
         }
