@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Proekt
+namespace Proekt.Windows
 {
     public partial class MainWindow : Window
     {
