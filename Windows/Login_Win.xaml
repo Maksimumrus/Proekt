@@ -5,27 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proekt.Windows"
         mc:Ignorable="d"
-        Title="Login_Win" Height="450" Width="800">
-    <Grid>
+        Title="Login_Win" Height="350" Width="600">
+    <Grid Margin="0,0,0,0">
         <TextBox 
             x:Name="logBox"
             HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Width="201" Height="46"
-            Margin="81,102,0,0" 
-            TextWrapping="Wrap" />
+            Width="200" Height="35"
+            Margin="60,50,0,0" 
+            TextWrapping="Wrap"
+            Background="#E9F6FF"
+            BorderThickness="0"
+            FontSize="20px" GotFocus="logBox_GotFocus" LostFocus="logBox_LostFocus"/>
 
-
-        <TextBox 
+        <PasswordBox 
             x:Name="passBox"
             HorizontalAlignment="Left" VerticalAlignment="Top" 
-            Width="201" Height="46"
-            Margin="81,209,0,0" 
-            TextWrapping="Wrap" />
+            Width="200" Height="35"
+            Margin="60,125,0,0" 
+            Background="#E9F6FF"
+            BorderThickness="0"
+            FontSize="20px"/>
+
         <Button 
             x:Name="logButt"
             HorizontalAlignment="Left" VerticalAlignment="Bottom"
-            Height="40" Width="119"
-            Margin="122,0,0,60" 
-            Content="Войти" Click="logButt_Click" />
+            Height="40" Width="120"
+            Margin="100,0,0,60" 
+            Content="Войти" FontSize="16px"
+            Click="logButt_Click"
+            Background="#FFECD6"
+            BorderThickness="0"/>
+        
+        <TextBlock 
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            Height="Auto" Width="240"
+            Margin="0,150,40,0" 
+            TextWrapping="Wrap" 
+            TextAlignment="Center" FontSize="18"
+            Text="Добро пожаловать в систему учета осблуживания автомобилей на СТО"/>
+
+        <TextBlock
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Height="Auto" Width="150" 
+            Margin="0,0,85,55" 
+            TextAlignment="Center" FontSize="22px" FontWeight="Bold"
+            Text="CarTuneUp" />
+        
+        <TextBlock
+            x:Name="incorrTxt"
+            HorizontalAlignment="Left" VerticalAlignment="Bottom"
+            Height="Auto" Width="Auto"
+            Margin="81,0,0,20"
+            Text="Неверный логин или пароль" 
+            Foreground="Red"/>
     </Grid>
 </Window>

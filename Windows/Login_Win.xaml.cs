@@ -2,6 +2,7 @@
 using Proekt.Class;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,31 +22,53 @@ namespace Proekt.Windows
         Database db = new Database();
         MySqlCommand cmd = new MySqlCommand();
         MainWindow mainWin = new MainWindow();
+
+        private async void incorrTxt_Show() // Функция показа текста при неккоректном вводе для полей
+        {
+            incorrTxt.Visibility = Visibility.Visible;
+            await Task.Delay(5000);
+            incorrTxt.Visibility = Visibility.Hidden;
+        }
+
         public Login_Win()
         {
             InitializeComponent();
+            incorrTxt.Visibility = Visibility.Hidden;
         }
 
         private void logButt_Click(object sender, RoutedEventArgs e)
         {
             db.openConn();
 
-            cmd = new MySqlCommand("SELECT * FROM USERS WHERE Login = @login;", db.statusConn());
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            DataTable table = new DataTable();
+            cmd = new MySqlCommand("SELECT * FROM USERS WHERE (Login = @login AND Password = @password);", db.statusConn());
             cmd.Parameters.AddWithValue("@login", logBox.Text);
+            cmd.Parameters.AddWithValue("@password", passBox.Password);
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            adapter.SelectCommand = cmd;
+            adapter.Fill(table);
 
-            while(reader.Read())
+            if (table.Rows.Count > 0)
             {
-                if (reader["Password"].ToString().Equals(passBox.Text.ToString()))
-                {
-                    MessageBox.Show("Успешная авторизация");
-                    Hide();
-                    mainWin.Show();
-                }
+                MessageBox.Show("Успешная авторизация");
+                Hide();
+                mainWin.Show();
             }
+            else { incorrTxt_Show(); }
+
             db.closeConn();
-            reader.Close();
+        }
+
+        private void logBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            logBox.Text = "";
+        }
+
+        private void logBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            logBox.Text = "Введите логин";
+            logBox.Foreground = "Gray";
         }
     }
 }
