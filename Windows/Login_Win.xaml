@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proekt.Windows"
         mc:Ignorable="d"
-        Title="Login_Win" Height="350" Width="600">
+        Title="Вход" Height="350" Width="600">
+    
     <Grid Margin="0,0,0,0">
         <TextBox 
             x:Name="logBox"
             HorizontalAlignment="Left" VerticalAlignment="Top" 
             Width="200" Height="35"
             Margin="60,50,0,0" 
-            TextWrapping="Wrap"
+            TextWrapping="NoWrap"
             Background="#E9F6FF"
             BorderThickness="0"
-            FontSize="20px" GotFocus="logBox_GotFocus" LostFocus="logBox_LostFocus"/>
+            FontSize="20px"
+            VerticalContentAlignment="Center" Padding="10,0,0,0"
+            GotFocus="logBox_GotFocus" LostFocus="logBox_LostFocus"
+            />
 
         <PasswordBox 
             x:Name="passBox"
@@ -24,7 +28,8 @@
             Margin="60,125,0,0" 
             Background="#E9F6FF"
             BorderThickness="0"
-            FontSize="20px"/>
+            FontSize="20px"
+            VerticalContentAlignment="Center" Padding="10,0,0,0" />
 
         <Button 
             x:Name="logButt"

@@ -21,7 +21,6 @@ namespace Proekt.Windows
     {
         Database db = new Database();
         MySqlCommand cmd = new MySqlCommand();
-        MainWindow mainWin = new MainWindow();
 
         private async void incorrTxt_Show() // Функция показа текста при неккоректном вводе для полей
         {
@@ -30,45 +29,78 @@ namespace Proekt.Windows
             incorrTxt.Visibility = Visibility.Hidden;
         }
 
+        private void logBox_TXT()
+        {
+            if (logBox.Text == "")
+            {
+                logBox.Text = "Логин";
+                logBox.FontStyle = FontStyles.Italic;
+                logBox.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
+
         public Login_Win()
         {
             InitializeComponent();
             incorrTxt.Visibility = Visibility.Hidden;
+            logBox_TXT();
         }
 
         private void logButt_Click(object sender, RoutedEventArgs e)
         {
-            db.openConn();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            DataTable table = new DataTable();
-            cmd = new MySqlCommand("SELECT * FROM USERS WHERE (Login = @login AND Password = @password);", db.statusConn());
-            cmd.Parameters.AddWithValue("@login", logBox.Text);
-            cmd.Parameters.AddWithValue("@password", passBox.Password);
-
-            adapter.SelectCommand = cmd;
-            adapter.Fill(table);
-
-            if (table.Rows.Count > 0)
+            MainWindow mainWin = new MainWindow();
+            try
             {
-                MessageBox.Show("Успешная авторизация");
-                Hide();
-                mainWin.Show();
-            }
-            else { incorrTxt_Show(); }
+                db.openConn();
 
-            db.closeConn();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                DataTable table = new DataTable();
+                cmd = new MySqlCommand("SELECT * FROM USERS WHERE (Login = @login AND Password = @password);", db.statusConn());
+                cmd.Parameters.AddWithValue("@login", logBox.Text);
+                cmd.Parameters.AddWithValue("@password", passBox.Password);
+
+                adapter.SelectCommand = cmd;
+                adapter.Fill(table);
+
+                if (table.Rows.Count > 0)
+                {
+                    MessageBox.Show(
+                    "Авторизация прошла успешно",
+                    "Успешная авторизация",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                    );
+                    Close();
+                    mainWin.Show();
+                }
+                else { incorrTxt_Show(); }
+
+                db.closeConn();
+            }
+            catch
+            {
+                MessageBox.Show(
+                    "Невозможно подключиться к серверу",
+                    "Сервер недоступен",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                    );
+            }
         }
 
         private void logBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            logBox.Text = "";
+            if (logBox.Text == "Логин")
+            {
+                logBox.Text = "";
+                logBox.FontStyle = FontStyles.Normal;
+                logBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
         }
 
         private void logBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            logBox.Text = "Введите логин";
-            logBox.Foreground = "Gray";
+            logBox_TXT();
         }
     }
 }
