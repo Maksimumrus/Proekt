@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Proekt.Class
 {
-    internal class Users
+    internal class Clients
     {
-        public int id {  get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
+        public int ID { get; set; }
         public string lastName { get; set; }
-        public string firstName { get; set; }
+        public string firsName { get; set; }
         public string patronomic { get; set; }
+        public string phoneNum { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
     }
 }

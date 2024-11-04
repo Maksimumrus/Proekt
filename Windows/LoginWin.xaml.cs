@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace Proekt.Windows
 {
-    public partial class Login_Win : Window
+    public partial class LoginWin : Window
     {
         Database db = new Database();
         MySqlCommand cmd = new MySqlCommand();
@@ -39,7 +39,7 @@ namespace Proekt.Windows
             }
         }
 
-        public Login_Win()
+        public LoginWin()
         {
             InitializeComponent();
             incorrTxt.Visibility = Visibility.Hidden;
@@ -48,14 +48,13 @@ namespace Proekt.Windows
 
         private void logButt_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWin = new MainWindow();
             try
             {
                 db.openConn();
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 DataTable table = new DataTable();
-                cmd = new MySqlCommand("SELECT * FROM USERS WHERE (Login = @login AND Password = @password);", db.statusConn());
+                cmd = new MySqlCommand("SELECT login, password FROM USERS WHERE (login = @login AND password = @password);", db.statusConn());
                 cmd.Parameters.AddWithValue("@login", logBox.Text);
                 cmd.Parameters.AddWithValue("@password", passBox.Password);
 
@@ -64,6 +63,7 @@ namespace Proekt.Windows
 
                 if (table.Rows.Count > 0)
                 {
+                    MainWindow mainWin = new MainWindow();
                     MessageBox.Show(
                     "Авторизация прошла успешно",
                     "Успешная авторизация",
@@ -71,6 +71,8 @@ namespace Proekt.Windows
                     MessageBoxImage.Information
                     );
                     Close();
+                    mainWin.logWin_logTxt = logBox.Text;
+                    mainWin.logWin_passTxt = passBox.Password;
                     mainWin.Show();
                 }
                 else { incorrTxt_Show(); }
@@ -101,6 +103,14 @@ namespace Proekt.Windows
         private void logBox_LostFocus(object sender, RoutedEventArgs e)
         {
             logBox_TXT();
+        }
+
+        private void logButt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                logButt_Click(sender, e);
+            }
         }
     }
 }
