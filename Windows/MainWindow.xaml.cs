@@ -58,14 +58,14 @@ namespace Proekt.Windows
         public MainWindow()
         {
             InitializeComponent();
-            zapis_Grid.ItemsSource = zapros_Veh.GetZapis(); // При загрузке окна таблица получает данные с метода GetZapis
+            zapis_Grid.ItemsSource = zapros_Veh.GetVeh(); // При загрузке окна таблица получает данные с метода GetVeh
 
             Texts();
         }
 
         private void reloadButt_Click(object sender, RoutedEventArgs e)
         {
-            zapis_Grid.ItemsSource= zapros_Veh.GetZapis();
+            zapis_Grid.ItemsSource= zapros_Veh.GetVeh();
         }
 
         private void zapis_Grid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

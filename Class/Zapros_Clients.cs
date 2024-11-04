@@ -20,7 +20,7 @@ namespace Proekt.Class
             {
                 db.openConn();
 
-                cmd = new MySqlCommand("SELECT c.* FROM clients c JOIN vehicles v ON c.id = v.clients_id WHERE v.licencePlate = @content;", db.statusConn());
+                cmd = new MySqlCommand("SELECT c.* FROM clients c JOIN clients_vehicles v ON c.id = v.clients_id WHERE v.licencePlate = @content;", db.statusConn());
                 cmd.Parameters.AddWithValue("content", content);
                 MySqlDataReader reader = cmd.ExecuteReader();
 

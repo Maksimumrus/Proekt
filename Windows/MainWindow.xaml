@@ -49,7 +49,7 @@
             Click="reloadButt_Click" Cursor="Hand"
             Background="#FFECD6">
             <StackPanel>
-                <Image Source="C:\C#\Proekt\Image\reload.png"/>
+                <Image Source="\Image\reload.png"/>
             </StackPanel>
             <Button.Resources>
                 <Style TargetType="Border">
@@ -79,7 +79,7 @@
             Cursor="Hand"
             Background="#FFECD6">
             <StackPanel>
-                <Image Source="C:\C#\Proekt\Image\poisk.png"/>
+                <Image Source="/Image/poisk.png"/>
             </StackPanel>
             <Button.Resources>
                 <Style TargetType="Border">
@@ -200,7 +200,7 @@
             Cursor="Hand"
             Background="#FFECD6" Click="userButt_Click">
             <StackPanel>
-                <Image Source="C:\C#\Proekt\Image\user.png"/>
+                <Image Source="\Image\user.png"/>
             </StackPanel>
             <Button.Resources>
                 <Style TargetType="Border">

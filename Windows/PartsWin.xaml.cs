@@ -22,6 +22,7 @@ namespace Proekt.Windows
         public string logWin_passTxt = "";
 
         Database db = new Database();
+        Zapros_Parts zapros_Parts = new Zapros_Parts();
 
         private void updateTooltip(TextBlock textBlock)
         {
@@ -46,11 +47,13 @@ namespace Proekt.Windows
         public PartsWin()
         {
             InitializeComponent();
+
+            parts_Grid.ItemsSource = zapros_Parts.GetParts();
         }
 
         private void reloadButt_Click(object sender, RoutedEventArgs e)
         {
-            //zapis_Grid.ItemsSource = zapros_Veh.GetZapis();
+            parts_Grid.ItemsSource = zapros_Parts.GetParts();
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -146,6 +149,25 @@ namespace Proekt.Windows
 
             Close();
             mainWin.Show();
+        }
+
+        private void parts_Grid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "article":
+                    e.Column.Header = "Артикул";
+                    break;
+                case "name":
+                    e.Column.Header = "Наименование";
+                    break;
+                case "amount":
+                    e.Column.Header = "Количество";
+                    break;
+                case "price":
+                    e.Column.Header = "Цена за шт.";
+                    break;
+            }
         }
     }
 }

@@ -13,19 +13,19 @@ namespace Proekt.Class
         Database db = new Database();
         MySqlCommand cmd = new MySqlCommand();
 
-        public List<Vehicles> GetZapis() // Получение записей на первичный прием
+        public List<Clients_Vehicles> GetVeh() // Получение записей об автомобилях
         {
-            List<Vehicles> returnTheese = new List<Vehicles>();
+            List<Clients_Vehicles> returnTheese = new List<Clients_Vehicles>();
             try
             {
                 db.openConn(); // Открываем подключение к базе данных
 
-                cmd = new MySqlCommand("SELECT * FROM vehicles", db.statusConn());
+                cmd = new MySqlCommand("SELECT * FROM clients_vehicles", db.statusConn());
                 MySqlDataReader reader = cmd.ExecuteReader(); // Служит для преобразования данных с сервера в данные языка программирования
 
                 while (reader.Read())
                 {
-                    Vehicles vehicles = new Vehicles // Добавляем полученные с сервера данные в экземпляр класса
+                    Clients_Vehicles c_vehicles = new Clients_Vehicles // Добавляем полученные с сервера данные в экземпляр класса
                     {
                         licencePlate = reader.GetString(0),
                         marka = reader.GetString(1),
@@ -37,7 +37,7 @@ namespace Proekt.Class
                         engineModel = reader.GetString(7),
                         engineNum = reader.GetString(8),
                     };
-                    returnTheese.Add(vehicles);
+                    returnTheese.Add(c_vehicles);
                 }
 
                 db.closeConn(); // Закрываем подключение к базе данных
@@ -55,15 +55,15 @@ namespace Proekt.Class
             return returnTheese;
         }
 
-        public List<Vehicles> Search(string search)
+        public List<Clients_Vehicles> Search(string search)
         {
-            List<Vehicles> returnTheese = new List<Vehicles>();
+            List<Clients_Vehicles> returnTheese = new List<Clients_Vehicles>();
 
             try
             {
                 db.openConn();
 
-                cmd = new MySqlCommand("SELECT * FROM vehicles WHERE licencePlate LIKE @lPLate_Search OR marka LIKE @marka_Search OR model LIKE @model_Search" +
+                cmd = new MySqlCommand("SELECT * FROM clients_vehicles WHERE licencePlate LIKE @lPLate_Search OR marka LIKE @marka_Search OR model LIKE @model_Search" +
                     " OR type LIKE @type_Search OR category LIKE @category_Search OR releaseYear LIKE @relYear_Search;", db.statusConn());
 
                 cmd.Parameters.AddWithValue("@lPlate_Search", string.Format("%{0}%", search));
@@ -77,7 +77,7 @@ namespace Proekt.Class
 
                 while (reader.Read())
                 {
-                    Vehicles vehicles = new Vehicles
+                    Clients_Vehicles c_vehicles = new Clients_Vehicles
                     {
                         licencePlate = reader.GetString(0),
                         marka = reader.GetString(1),
@@ -89,7 +89,7 @@ namespace Proekt.Class
                         engineModel = reader.GetString(7),
                         engineNum = reader.GetString(8),
                     };
-                    returnTheese.Add(vehicles);
+                    returnTheese.Add(c_vehicles);
                 }
                 db.closeConn();
                 return returnTheese;
