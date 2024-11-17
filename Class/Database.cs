@@ -9,7 +9,7 @@ namespace Proekt.Class
 {
     internal class Database
     {
-        MySqlConnection connection = new MySqlConnection("server = localhost; port = 3310; username = root; password = root; database = proekt");
+        MySqlConnection connection = new MySqlConnection("server = localhost; port = 3308; username = root; password = root; database = proekt");
         public void openConn()
         {
             if (connection.State == System.Data.ConnectionState.Closed)
