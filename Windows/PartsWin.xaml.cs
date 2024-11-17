@@ -116,6 +116,9 @@ namespace Proekt.Windows
                 case "price":
                     e.Column.Header = "Цена за шт.";
                     break;
+                case "total":
+                    e.Column.Header = "Итог";
+                    break;
             }
         }
 

@@ -62,7 +62,7 @@ namespace Proekt.Class
                         article = reader.GetString(0),
                         name = reader.GetString(1),
                         amount = reader.GetInt32(2),
-                        price = reader.GetInt32(3)
+                        price = reader.GetDouble(3),
                     });
                 }
                 db.closeConn();
@@ -101,7 +101,7 @@ namespace Proekt.Class
                         article = reader.GetString(0),
                         name = reader.GetString(1),
                         amount = reader.GetInt32(2),
-                        price = reader.GetInt32(3)
+                        price = reader.GetDouble(3)
                     });
                 }
                 db.closeConn();
@@ -141,7 +141,7 @@ namespace Proekt.Class
                         article = reader.GetString(0),
                         name = reader.GetString(1),
                         amount = reader.GetInt32(2),
-                        price = reader.GetInt32(3),
+                        price = reader.GetDouble(3),
                     });
                 }
                 db.closeConn();

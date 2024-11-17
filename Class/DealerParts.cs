@@ -11,6 +11,6 @@ namespace Proekt.Class
         public string article { get; set; }
         public string name { get; set; }
         public int amount { get; set; }
-        public int price { get; set; }
+        public double price { get; set; }
     }
 }
