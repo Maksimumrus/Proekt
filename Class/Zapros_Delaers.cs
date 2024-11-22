@@ -158,5 +158,32 @@ namespace Proekt.Class
             }
             return returnTheese;
         }
+
+        public void AddParts(DealerParts addParts) // Добавление несуществующих записей
+        {
+            try
+            {
+                db.openConn();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO parts (article, name, amount, price) VALUES (@article, @name, @amount, @price)" +
+                    "ON DUPLICATE KEY UPDATE amount = amount + @amount, price = @price / @amount; ", db.statusConn());
+                cmd.Parameters.AddWithValue("@article", addParts.article);
+                cmd.Parameters.AddWithValue("@name", addParts.name);
+                cmd.Parameters.AddWithValue("@amount", addParts.amount);
+                cmd.Parameters.AddWithValue("price", addParts.price);
+
+                cmd.ExecuteNonQuery();
+                db.closeConn();
+            }
+            catch
+            {
+                MessageBox.Show(
+                    "Ошибка запроса",
+                    "Невозможно выполнить запрос",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                    );
+            }
+        }
     }
 }

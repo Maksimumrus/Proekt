@@ -225,7 +225,6 @@ namespace Proekt.Windows
         private void backButt_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWin = new MainWindow();
-
             Close();
             mainWin.Show(); // Кнопка возврата на главный экран
         }

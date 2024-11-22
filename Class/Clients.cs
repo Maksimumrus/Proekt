@@ -10,7 +10,7 @@ namespace Proekt.Class
     {
         public int ID { get; set; }
         public string lastName { get; set; }
-        public string firsName { get; set; }
+        public string firstName { get; set; }
         public string patronomic { get; set; }
         public string phoneNum { get; set; }
         public string email { get; set; }

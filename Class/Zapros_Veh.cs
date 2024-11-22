@@ -36,6 +36,7 @@ namespace Proekt.Class
                         VIN_num = reader.GetString(6),
                         engineModel = reader.GetString(7),
                         engineNum = reader.GetString(8),
+                        description = reader.GetString(9),
                     };
                     returnTheese.Add(c_vehicles);
                 }
@@ -88,6 +89,7 @@ namespace Proekt.Class
                         VIN_num = reader.GetString(6),
                         engineModel = reader.GetString(7),
                         engineNum = reader.GetString(8),
+                        description = reader.GetString(9)
                     };
                     returnTheese.Add(c_vehicles);
                 }

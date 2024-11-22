@@ -30,7 +30,7 @@ namespace Proekt.Class
                     {
                         ID = reader.GetInt32(0),
                         lastName = reader.GetString(1),
-                        firsName = reader.GetString(2),
+                        firstName = reader.GetString(2),
                         patronomic = reader.GetString(3),
                         phoneNum = reader.GetString(4),
                         email = reader.GetString(5),

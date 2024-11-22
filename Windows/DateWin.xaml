@@ -1,0 +1,14 @@
+﻿<Window x:Class="Proekt.Windows.DateWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Выбор дат" Height="200" Width="300" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <StackPanel Margin="10">
+        <Label Content="Дата начала:" />
+        <DatePicker Name="StartDatePicker" />
+
+        <Label Content="Дата окончания:" />
+        <DatePicker Name="EndDatePicker" />
+
+        <Button Content="Сохранить" Click="SaveButton_Click" Margin="0,10,0,0" />
+    </StackPanel>
+</Window>

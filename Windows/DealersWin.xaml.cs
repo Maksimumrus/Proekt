@@ -1,4 +1,5 @@
-﻿using Proekt.Class;
+﻿using MySql.Data.MySqlClient;
+using Proekt.Class;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,6 +11,11 @@ namespace Proekt.Windows
     {
         Database db = new Database();
         Zapros_Delaers zapros_Dealers = new Zapros_Delaers();
+
+        string article;
+        string name;
+        double price;
+
         private void updateTooltip(TextBlock textBlock)
         {
             var formattedText = new FormattedText(
@@ -73,6 +79,10 @@ namespace Proekt.Windows
                 var Dpart = Dparts[0];
 
                 priceBox.Text = Dpart.price.ToString();
+
+                article = Dpart.article;
+                name = Dpart.name;
+                price = Dpart.price;
             }
         }
 
@@ -165,6 +175,18 @@ namespace Proekt.Windows
                 }
                 priceBox.Text = price.ToString();
             }
+        }
+
+        private void addButt_Click(object sender, RoutedEventArgs e)
+        {
+            DealerParts dealerParts = new DealerParts
+            {
+                article = article,
+                name = name,
+                amount = Convert.ToInt32(amountBox.Text),
+                price = Convert.ToInt32(priceBox.Text),
+            };
+            zapros_Dealers.AddParts(dealerParts);
         }
     }
 }

@@ -1,14 +1,21 @@
-﻿<Window
+﻿<Window x:Class="Proekt.Windows.DiagnosticWin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proekt.Windows"
-        x:Class="Proekt.Windows.MainWindow"
         mc:Ignorable="d"
-        Title="Основное окно" Height="450" Width="800">
+        Title="DiagnosticWin" Height="400" Width="800">
     <Window.Resources>
         <Style x:Key="Txt_GrayItalic">
+            <Setter Property="TextBox.Foreground" Value="Gray"/>
+            <Setter Property="TextBox.FontStyle" Value="Italic"/>
+            <Setter Property="TextBox.FontSize" Value="16px"/>
+            <Setter Property="TextBox.Padding" Value="10,3,0,0"/>
+            <Setter Property="TextBox.Background" Value="#E9F6FF"/>
+            <Setter Property="TextBox.BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="Txt_GrayItalicBlock">
             <Setter Property="TextBlock.Foreground" Value="Gray"/>
             <Setter Property="TextBlock.FontStyle" Value="Italic"/>
             <Setter Property="TextBlock.FontSize" Value="16px"/>
@@ -16,6 +23,14 @@
             <Setter Property="TextBlock.Background" Value="#E9F6FF"/>
         </Style>
         <Style x:Key="Txt_Normal">
+            <Setter Property="TextBox.Foreground" Value="Black"/>
+            <Setter Property="TextBox.FontStyle" Value="Normal"/>
+            <Setter Property="TextBox.FontSize" Value="16px"/>
+            <Setter Property="TextBox.Padding" Value="10,3,0,0"/>
+            <Setter Property="TextBox.Background" Value="#E9F6FF"/>
+            <Setter Property="TextBox.BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="Txt_NormalBlock">
             <Setter Property="TextBlock.Foreground" Value="Black"/>
             <Setter Property="TextBlock.FontStyle" Value="Normal"/>
             <Setter Property="TextBlock.FontSize" Value="16px"/>
@@ -30,15 +45,15 @@
     </Window.Resources>
     <Grid>
         <DataGrid 
-            x:Name="zapis_Grid"
+            x:Name="diagn_Grid"
             HorizontalAlignment="Right" VerticalAlignment="Top"
             Height="200" Width="680" 
             Margin="0,10,50,0" 
             CanUserReorderColumns="False" CanUserResizeColumns="False" IsReadOnly="True"
             CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" 
             HeadersVisibility="Column"
-            SelectedCellsChanged="zapis_Grid_SelectedCellsChanged"
-            FontSize="12px" LostFocus="zapis_Grid_LostFocus" AutoGeneratingColumn="zapis_Grid_AutoGeneratingColumn"/>
+            SelectedCellsChanged="diagn_Grid_SelectedCellsChanged"
+            FontSize="12px" LostFocus="diagn_Grid_LostFocus" AutoGeneratingColumn="diagn_Grid_AutoGeneratingColumn"/>
 
         <Button 
             x:Name="reloadButt"
@@ -87,83 +102,46 @@
                 </Style>
             </Button.Resources>
         </Button>
-        
+
         <StackPanel
-            x:Name="CPanel_Left"
-            Margin="0,280,0,0"
-            HorizontalAlignment="Center" VerticalAlignment="Top">
+            x:Name="Panel_Left"
+            Margin="40,270,0,0"
+            HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel.Resources>
-                <Style BasedOn="{StaticResource Txt_GrayItalic}" TargetType="TextBlock"/>
+                <Style BasedOn="{StaticResource Txt_GrayItalic}" TargetType="TextBox"/>
             </StackPanel.Resources>
             <TextBlock 
-                x:Name="lName_Box"
+                x:Name="dateBlock"
                 HorizontalAlignment="Center" VerticalAlignment="Top"
-                Width="190" Height="30"
+                Width="280" Height="30"
                 Margin="0,0,0,10" 
                 TextWrapping="Wrap"                 
-                Text="Фамилия"
+                Text="Выбрать сроки"
+                Style="{StaticResource Txt_GrayItalicBlock}"
                 MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
 
-            <TextBlock 
-                x:Name="fName_Box"
+            <TextBox 
+                x:Name="service_Box"
                 HorizontalAlignment="Center" VerticalAlignment="Top"
-                Width="190" Height="30"
+                Width="280" Height="30"
                 Margin="0,0,0,10"
                 TextWrapping="Wrap" 
-                Text="Имя"
-                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-
-            <TextBlock 
-                x:Name="pName_Box"
-                HorizontalAlignment="Center" VerticalAlignment="Top"
-                Width="190" Height="30"
-               Margin="0,0,0,10"
-                TextWrapping="Wrap" 
-                FontSize="16px" Padding="10,3,0,0"
-                Background="#E9F6FF"
-                Text="Отчество"
-                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-        </StackPanel>
-        <StackPanel
-            x:Name="CPanel_Right"
-            Margin="0,280,90,0"
-            HorizontalAlignment="Right" VerticalAlignment="Top">
-            <StackPanel.Resources>
-                <Style BasedOn="{StaticResource Txt_GrayItalic}" TargetType="TextBlock"/>
-            </StackPanel.Resources>
-            <TextBlock 
-                x:Name="pNum_Box"
-                Width="190" Height="30"
-                TextWrapping="Wrap" 
-                Margin="0,0,0,10"
-                Text="Номер телефона"
-                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-
-            <TextBlock 
-                x:Name="mailAddr_Box"
-                Width="190" Height="30"
-                TextWrapping="Wrap" 
-                Margin="0,0,0,10"
-                Text="E-mail"
-                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-
-            <TextBlock 
-                x:Name="addr_Box"
-                Width="190" Height="30" 
-                TextWrapping="Wrap"
-                Margin="0,0,0,10"
-                Text="Адрес" 
-                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+                Text="Выбрать необходимые услуги"
+                MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"
+                GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
         </StackPanel>
 
         <Button 
-            x:Name="diagnButt"
+            x:Name="calendarButt"
             HorizontalAlignment="Left" VerticalAlignment="Top"
-            Height="30" Width="200"
-            Margin="47,280,0,0" 
-            Content="Провести диагностику" FontSize="16px"
-            Background="#FFECD6"
-            BorderThickness="0" Click="diagnButt_Click" Cursor="Hand">
+            Height="30" Width="30"
+            Margin="290,270,0,0"
+            BorderThickness="0"
+            Cursor="Hand"
+            Background="#FFECD6" Click="calendarButt_Click">
+            <StackPanel>
+                <Image Source="/Image/calendar.png"/>
+            </StackPanel>
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -172,13 +150,28 @@
         </Button>
 
         <Button 
-            x:Name="partsButt"
-            HorizontalAlignment="Left" VerticalAlignment="Top"
-            Height="30" Width="200"
-            Margin="47,325,0,0" 
-            Content="Доступные запчасти" FontSize="16px"
+            x:Name="addButt"
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Height="30" Width="160"
+            Margin="0,0,200,20" 
+            Content="Выбрать запчасти" FontSize="16px"
             Background="#FFECD6"
-            BorderThickness="0" Click="partsButt_Click" Cursor="Hand">
+            BorderThickness="0" Cursor="Hand" Click="addButt_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button 
+            x:Name="doneButt"
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Height="30" Width="160"
+            Margin="0,0,20,20" 
+            Content="Завершить" FontSize="16px"
+            Background="#FFECD6"
+            BorderThickness="0" Cursor="Hand" Click="doneButt_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -196,7 +189,7 @@
             x:Name="userButt"
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Height="30" Width="30"
-            Margin="20,10,0,0"
+            Margin="20,50,0,0"
             BorderThickness="0"
             Cursor="Hand"
             Background="#FFECD6" Click="userButt_Click">
@@ -209,6 +202,25 @@
                 </Style>
             </Button.Resources>
         </Button>
+
+        <Button 
+            x:Name="backButt"
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Height="30" Width="30"
+            Margin="20,10,0,0"
+            BorderThickness="0"
+            Cursor="Hand"
+            Background="#FFECD6" Click="backButt_Click">
+            <StackPanel>
+                <Image Source="/Image/back.png"/>
+            </StackPanel>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
         <StackPanel
             x:Name="UserPanel"
             HorizontalAlignment="Left" VerticalAlignment="Top"
@@ -229,7 +241,7 @@
                 Width="190" Height="30"
                 TextWrapping="Wrap" 
                 Margin="0,0,0,10"
-                Text="Имя"/>
+                Text="Имя"/>    
 
             <TextBlock 
                 x:Name="pName_BoxUser"

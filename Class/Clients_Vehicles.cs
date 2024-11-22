@@ -17,5 +17,6 @@ namespace Proekt.Class
         public string VIN_num { get; set; }
         public string engineModel { get; set; }
         public string engineNum { get; set; }
+        public string description { get; set; }
     }
 }

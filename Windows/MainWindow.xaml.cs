@@ -94,10 +94,13 @@ namespace Proekt.Windows
                     e.Column.Header = "VIN номер";
                     break;
                 case "engineModel":
-                    e.Column.Header = "Модель двигателя";
+                    e.Column.Visibility = Visibility.Collapsed;
                     break;
                 case "engineNum":
-                    e.Column.Header = "Номер двигателя";
+                    e.Column.Visibility= Visibility.Collapsed;
+                    break;
+                case "description":
+                    e.Column.Header = "Описание проблемы";
                     break;
             }
         }
@@ -134,7 +137,7 @@ namespace Proekt.Windows
                     var client = clients[0];
 
                     lName_Box.Text = client.lastName;
-                    fName_Box.Text = client.firsName;
+                    fName_Box.Text = client.firstName;
                     pName_Box.Text = client.patronomic;
                     pNum_Box.Text = client.phoneNum;
                     mailAddr_Box.Text = client.email;
@@ -263,6 +266,15 @@ namespace Proekt.Windows
             partsWin.logWin_passTxt = logWin_passTxt;
             Close();
             partsWin.Show();
+        }
+
+        private void diagnButt_Click(object sender, RoutedEventArgs e)
+        {
+            DiagnosticWin diagnosticWin = new DiagnosticWin();
+            diagnosticWin.logWin_logTxt = logWin_logTxt;
+            diagnosticWin.logWin_passTxt = logWin_passTxt;
+            Close();
+            diagnosticWin.Show();
         }
     }
 }
